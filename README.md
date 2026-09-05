@@ -6,7 +6,7 @@
   <strong>Deep Learning • Transfer Learning • Computer Vision • Streamlit</strong>
 </p>
 
-FreshHarvest is an end-to-end computer vision project that automates visual fruit freshness inspection using deep learning. The final solution uses **ResNet50 transfer learning** to classify images of eight supported fruits/vegetables as **Fresh** or **Spoiled**, and provides an interactive **Streamlit** application for image-based prediction.
+FreshHarvest is an end-to-end deep learning project that automates visual fruit freshness inspection using deep learning. The final solution uses **ResNet50 transfer learning** to classify images of eight supported fruits/vegetables as **Fresh** or **Spoiled**, and provides an interactive **Streamlit** application for image-based prediction.
 
 ---
 
@@ -69,7 +69,7 @@ Fresh / Spoiled Prediction
 # 🎯 Project Objectives
 
 - Automate visual fruit freshness classification.
-- Classify eight supported fruit/vegetable types.
+- Classify eight supported fruit types.
 - Build a CNN baseline from scratch.
 - Investigate overfitting using training and validation performance.
 - Experiment with regularization techniques including batch normalization and dropout.
@@ -145,7 +145,7 @@ A batch-normalized CNN variant was trained and evaluated across multiple epochs.
 
 ### Dropout
 
-A CNN variant using **Dropout = 0.2** was also evaluated.
+A CNN variant using **Dropout = 0.2,0.5** was also evaluated.
 
 ### Weight Decay
 
@@ -156,6 +156,14 @@ Weight decay was considered as an additional approach for controlling model comp
 Validation performance was monitored to identify the point where additional training no longer consistently improved generalization.
 
 These experiments helped establish that simply increasing the number of epochs does not necessarily improve validation performance.
+
+## 3. Baseline CNN and Regularization Comparison
+
+The **baseline CNN achieved a training accuracy of 99.75% and a best validation accuracy of 96.95% at Epoch 10**.
+
+Regularization experiments using Batch Normalization, Dropout, and Weight Decay did not outperform the baseline model on this dataset. Dropout with a rate of 0.2 performed relatively well, achieving a best validation accuracy of 95.29%, whereas Dropout 0.5 significantly reduced performance.
+
+Therefore, the **baseline CNN was retained as the better-performing model based on validation accuracy**.
 
 ---
 
@@ -209,8 +217,8 @@ One of the best recorded runs was:
 | Metric | Result |
 |---|---:|
 | Training Epochs | **3** |
-| Training Accuracy | **99.70%** |
-| Validation Accuracy | **99.62%** |
+| Training Accuracy | **99.81%** |
+| Validation Accuracy | **99.67%** |
 | Test Accuracy | **99.58%** |
 
 The model was therefore saved after the **3-epoch** experiment rather than continuing to train unnecessarily.
@@ -223,7 +231,7 @@ The model was therefore saved after the **3-epoch** experiment rather than conti
 
 The ResNet50 confusion matrix shows that predictions are concentrated strongly along the diagonal, indicating that most samples were correctly classified.
 
-![ResNet50 Confusion Matrix](images/confusion_matrix_resnet50.png)
+![ResNet50 Confusion Matrix](visuals/resnet50_confusion_matrix.png)
 
 ### Observations
 
@@ -248,7 +256,7 @@ The application allows a user to:
 
 ### Example: Spoiled Mango
 
-![Streamlit spoiled mango prediction](images/streamlit_spoiled_mango.png)
+![Streamlit spoiled mango prediction](streamlit-app-deployed-visuals/streamlit_spoiled_mango.png)
 
 The application correctly displays:
 
@@ -258,7 +266,7 @@ Spoiled Mango
 
 ### Example: Fresh Mango
 
-![Streamlit fresh mango prediction](images/streamlit_fresh_mango.png)
+![Streamlit fresh mango prediction](streamlit-app-deployed-visuals/streamlit_fresh_mango.png)
 
 The application correctly displays:
 
@@ -334,23 +342,55 @@ A stronger future solution would include a dedicated **Not Fruit / Other** class
 
 # 📁 Project Structure
 
+
 ```text
-FreshHarvest/
+Fruit-Freshness-Classification-CNN/
 │
 ├── app.py
+│   └── Streamlit application for uploading fruit images
+│
 ├── prediction.py
+│   └── Model loading, image preprocessing, and prediction logic
+│
 ├── best_resnet50_freshharvest.pth
-├── requirements.txt
+│   └── Trained ResNet50 model checkpoint
+│
+├── Streamlit_App_link
+│   └── Link to the deployed Streamlit application
+│
 ├── README.md
+│   └── Project documentation
 │
-├── images/
-│   ├── freshharvest_cover.png
+├── .gitattributes
+│   └── Git configuration for repository files
+│
+├── notebooks/
+│   ├── fruit_freshness_classification.ipynb
+│   │   └── CNN model development, EDA, training, evaluation,
+│   │       regularization, and experimentation
+│   │
+│   └── fruit_freshness_classification_using_transfer-learning.ipynb
+│       └── ResNet50 transfer learning implementation,
+│           training, evaluation, and model saving
+│
+├── streamlit-app-deployed-visuals/
 │   ├── streamlit_fresh_mango.png
-│   ├── streamlit_spoiled_mango.png
-│   └── confusion_matrix_resnet50.png
+│   │   └── Streamlit prediction example: Fresh Mango
+│   │
+│   └── streamlit_spoiled_mango.png
+│       └── Streamlit prediction example: Spoiled Mango
 │
-└── notebooks/
-    └── FreshHarvest_ResNet50.ipynb
+└── visuals/
+    ├── freshharvest_cover.png
+    │   └── Project cover image
+    │
+    ├── resnet50_confusion_matrix.png
+    │   └── ResNet50 confusion matrix
+    │
+    ├── streamlit_ui_1.png
+    ├── streamlit_ui_2.png
+    └── streamlit_ui_3.png
+        └── Streamlit application interface screenshots
 ```
 
 ### Main Files
@@ -363,7 +403,7 @@ FreshHarvest/
 | `requirements.txt` | Python dependencies |
 | `README.md` | Project documentation |
 | `notebooks/` | Model development and experimentation |
-| `images/` | README screenshots and visual assets |
+| `visuals/` | README screenshots and visual assets |
 
 ---
 
@@ -372,27 +412,11 @@ FreshHarvest/
 ## 1. Clone the repository
 
 ```bash
-git clone <YOUR_GITHUB_REPOSITORY_URL>
-cd FreshHarvest
+git clone https://github.com/bhartishr28/Fruit-Freshness-Classification-CNN
+cd Fruit-Freshness-Classification-CNN
 ```
 
-## 2. Create a virtual environment
-
-### Windows
-
-```bash
-python -m venv venv
-venv\Scripts\activate
-```
-
-### macOS / Linux
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
-## 3. Install dependencies
+## 2. Install dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -560,12 +584,12 @@ This project provided hands-on experience with:
 
 ```text
 ✓ 16-class fruit freshness classification
-✓ 8 supported fruit/vegetable types
+✓ 8 supported fruit types
 ✓ Fresh vs Spoiled classification
 ✓ Custom CNN baseline
 ✓ Regularization experiments
 ✓ Transfer learning with ResNet50
-✓ 99.62% recorded validation accuracy
+✓ 99.67% recorded validation accuracy
 ✓ 99.58% recorded test accuracy
 ✓ Best recorded training configuration: 3 epochs
 ✓ Saved trained model checkpoint
@@ -589,7 +613,6 @@ Data Analytics | Machine Learning | Deep Learning | Banking Analytics
 
 This project is intended primarily for educational, portfolio, and demonstration purposes.
 
-If you plan to distribute or use the project commercially, add an appropriate open-source license and verify the licensing terms of the dataset and pre-trained model weights used by the project.
 
 ---
 
