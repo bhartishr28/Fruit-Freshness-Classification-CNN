@@ -9,6 +9,10 @@
 FreshHarvest is an end-to-end deep learning project that automates visual fruit freshness inspection using deep learning. The final solution uses **ResNet50 transfer learning** to classify images of eight supported fruits/vegetables as **Fresh** or **Spoiled**, and provides an interactive **Streamlit** application for image-based prediction.
 
 ---
+### 🚀 Live Demo
+
+👉 **[Launch FreshHarvest Streamlit App](https://fruit-freshness-classification-cnn-ua8gwrsda44pnsbepjfptv.streamlit.app/)**
+---
 
 ## 📌 Business Problem
 
@@ -86,7 +90,13 @@ Fresh / Spoiled Prediction
 
 # 🗂️ Dataset
 
-The classification task contains **16 classes** representing eight fruit/vegetable types and two freshness states.
+The dataset contains **16,000 images** across 16 classes, representing fresh and spoiled conditions for 8 types of fruits.
+
+- **8 fruit types**
+- **2 freshness categories:** Fresh and Spoiled
+- **1,000 images per class**
+- **16 classes × 1,000 images = 16,000 images**
+- Image dimensions: **224 × 224 pixels**
 
 | Fruit / Vegetable | Fresh | Spoiled |
 |---|---|---|
@@ -275,6 +285,13 @@ Fresh Mango
 ```
 
 ---
+## 🚀 Deployment
+
+The trained ResNet50 model is integrated into a Streamlit application that allows users to upload a fruit image and receive a freshness classification.
+
+**Live Application:**  
+👉 [FreshHarvest – Streamlit App](https://fruit-freshness-classification-cnn-ua8gwrsda44pnsbepjfptv.streamlit.app/)
+
 
 # 🔄 Application Architecture
 
