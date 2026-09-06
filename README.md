@@ -6,7 +6,7 @@
   <strong>Deep Learning • Transfer Learning • Computer Vision • Streamlit</strong>
 </p>
 
-FreshHarvest is an end-to-end deep learning project that automates visual fruit freshness inspection using deep learning. The final solution uses **ResNet50 transfer learning** to classify images of eight supported fruits/vegetables as **Fresh** or **Spoiled**, and provides an interactive **Streamlit** application for image-based prediction.
+FreshHarvest is an end-to-end deep learning project that automates visual fruit freshness inspection using deep learning. The final solution uses **ResNet50 transfer learning** to classify images of eight supported fruits as **Fresh** or **Spoiled**, and provides an interactive **Streamlit** application for image-based prediction.
 
 ---
 ### 🚀 Live Demo
