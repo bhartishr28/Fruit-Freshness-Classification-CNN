@@ -112,7 +112,7 @@ The dataset contains **16,000 images** across 16 classes, representing fresh and
 ### Number of Classes
 
 ```text
-8 fruit/vegetable types × 2 freshness categories = 16 classes
+8 fruit types × 2 freshness categories = 16 classes
 ```
 
 ---
